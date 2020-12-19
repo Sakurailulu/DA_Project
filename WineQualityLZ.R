@@ -23,7 +23,6 @@ melted_wine <- melt(cormat)
 head(melted_wine)
 #heatmap in default color
 #ggplot(data = melted_wine, aes(x=Var1, y=Var2, fill=value)) + geom_tile()
-
 ggplot(data = melted_wine, aes(x=Var1, y=Var2, fill=value)) + geom_tile()+
   scale_fill_gradient2(low = "red",mid = "purple",high = "blue", guide = "colourbar")
 
