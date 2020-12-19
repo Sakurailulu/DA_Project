@@ -27,26 +27,6 @@ head(melted_wine)
 ggplot(data = melted_wine, aes(x=Var1, y=Var2, fill=value)) + geom_tile()+
   scale_fill_gradient2(low = "red",mid = "purple",high = "blue", guide = "colourbar")
 
-#KNN
-set.seed(400)
-wine_train <- createDataPartition(y = WineQuality$quality, p = 0.7, list = FALSE)
-training <- WineQuality[wine_train,]
-testing <- WineQuality[-wine_train,]
-
-#distribution in original data
-prop.table(table(training$quality)) * 100
-#distribution in testing data
-prop.table(table(testing$quality)) * 100
-
-#normalize KNN variables
-trainx <- training[,names(training) != "quality"]
-preProcessValue <- preProcess(x = trainx, method = c("center","scale"))
-
-control <- trainControl(method = "repeatedcv", repeats = 3)
-knnFit <- train(quality ~., data = training, method = "knn", trControl = control, preProcess = c("center", "scale"),tuneLength = 20)
-knnFit
-plot(knnFit)
-
 #correlation plot
 corrplot(cor(WineQuality_matrix))
-#visualization relationship of the y variable
+
