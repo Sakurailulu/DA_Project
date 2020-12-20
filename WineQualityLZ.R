@@ -52,10 +52,16 @@ med.train_wine = WineQuality$med[train_wine]
 WineQuality.test_wine = WineQuality[test_wine,-2]
 med.test_wine = WineQuality$med[test_wine]
 # display a proportion table that shows predicted med vs. actual med quality
+knn.pred_med_1 = knn(WineQuality.train_wine,WineQuality.test_wine,med.train_wine,k=1)
 knn.pred_med_5 = knn(WineQuality.train_wine,WineQuality.test_wine,med.train_wine,k=5)
+knn.pred_med_10 = knn(WineQuality.train_wine,WineQuality.test_wine,med.train_wine,k=10)
+prop.table(table(knn.pred_med_1,med.test_wine))
 prop.table(table(knn.pred_med_5,med.test_wine))
+prop.table(table(knn.pred_med_10,med.test_wine))
 # calculate prediction accuracy
+mean(knn.pred_med_1==med.test_wine)
 mean(knn.pred_med_5==med.test_wine)
+mean(knn.pred_med_10==med.test_wine)
 
 WineQuality.train_wine = WineQuality[train_wine,-3]
 high.train_wine = WineQuality$high[train_wine]
